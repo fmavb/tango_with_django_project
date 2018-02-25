@@ -4,26 +4,36 @@
 {% endblock %}
 
 {% block body_block %}
-		<h1>Rango says...</h1>
-		<div> hey there partner! </div>
-		<h1>Most Liked Categories</h1>
-		<div>
+<div class="jumbotron" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+		<h1 class="display-3">Rango says...</h1>
+		{% if user.is_authenticated %}
+			<h1>hey there {{ user.username }}</h1>
+		{% else %}
+			<h1>hey there partner!</h1>
+		{% endif %}
+</div>
+<div class="row marketing">
+	<div class="col-lg-6">
+		<h4>Most Liked Categories</h4>
+		<p>
             Number of visits: {{ visits }}
 			{% if categories %}
 			<ul>
 				{% for category in categories %}
 				<li>
-				<a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+				<a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
 				</li>
 				{% endfor %}
 			</ul>
 			{% else %}
 				<strong> There are no categories present. </strong>
 			{% endif %}
-		</div>
-
-		<h1>Most Viewed Pages</h1>
-		<div>
+		</p>
+	</div>
+</div>
+<div class="col-lg-6">
+		<h4>Most Viewed Pages</h4>
+		<p>
 			{% if pages %}
 			<ul>
 				{% for page in pages %}
@@ -35,7 +45,8 @@
 			{% else %}
 				<strong>No pages to show.</strong>
 			{% endif %}
-		</div>
+		</p>
+</div>
 
 		<div>
 			<img src="/static/images/rango.jpg"

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-LOGIN_URL = '/rango/login/'
+LOGIN_URL = '/accounts/login'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -106,6 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 STATICFILES_DIRS = [STATIC_DIR,]
 MEDIA_ROOT = MEDIA_DIR
 
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_URL = '/accounts/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
